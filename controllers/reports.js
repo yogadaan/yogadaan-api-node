@@ -11,7 +11,7 @@ const database = require("../utils/database");
 
 // };
 
-exports.getCases = (req, res, next) => {
+exports.getCases = (req, res) => {
   database
     .query(`SELECT * FROM reports`)
     .then((result) => {
@@ -22,7 +22,7 @@ exports.getCases = (req, res, next) => {
     });
 };
 
-exports.createCases = (req, res, next) => {
+exports.createCases = (req, res) => {
   const uUID = req.body.uUID;
   const victimName = req.body.victimName;
   const vTime = req.body.vTime;
