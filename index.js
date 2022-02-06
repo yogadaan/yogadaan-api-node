@@ -18,7 +18,6 @@ app.use('/nearby', router);
 
 app.get('*', (req,res) => {
     res.status(404).send({"Message":"Route Not Found"});
-
 });
 
 

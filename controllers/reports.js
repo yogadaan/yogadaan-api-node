@@ -13,12 +13,15 @@ const database = require("../utils/database");
 
 exports.getCases = (req, res) => {
   database
-    .query(`SELECT * FROM reports`)
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      console.log(err);
+    .query(`SELECT * FROM reports`, (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      else{
+        console.log(result);
+        res.send(result);
+      }
+  
     });
 };
 
@@ -33,12 +36,15 @@ exports.createCases = (req, res) => {
 
   database
     .query(
-      `INSERT INTO reports(uUID, victimName, vTime, cType, severity, vLocation, inform) VALUES('${uUID}','${victimName}', '${vTime}','${cType}', '${severity}', '${vLocation}','${inform}')`
-    )
-    .then((result) => {
-        res.send({"message" :"DataUpdated" , status: "200"});
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+      `INSERT INTO reports(uUID, victimName, vTime, cType, severity, vLocation, inform) VALUES('${uUID}','${victimName}', '${vTime}','${cType}', '${severity}', '${vLocation}','${inform}')`, (err,result) => {
+        if (err) {
+          console.log(err);
+        }
+        else{
+          console.log(result);
+          res.send(result);
+        }
+    
+      }
+    );
 };
