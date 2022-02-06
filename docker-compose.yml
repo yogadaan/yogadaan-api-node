@@ -1,5 +1,5 @@
 services:
-  nearbydb:
+  mysqldb:
     image: mysql:8.0.27
     platform: linux/amd64
     container_name: nearbyContainer
@@ -17,7 +17,7 @@ services:
       MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: Jaimatadi
       SERVICE_TAG: dev
-      SERVICE_NAME: nearbydb
+      SERVICE_NAME: mysqldb
     networks:
       - internalnet
 
@@ -33,7 +33,7 @@ services:
     expose:
       - 3000
     environment:
-      DB_HOST : nearbydb
+      DB_HOST : mysqldb
       DB_PORT : 3306
       DB_USER : root
       DB_NAME :  reportsFeed
@@ -42,7 +42,7 @@ services:
       SERVICE_NAME: nodeappservice
       SERVER_PORT: 3000
     depends_on:
-      - nearbydb
+      - mysqldb
     networks:
       - internalnet
 
