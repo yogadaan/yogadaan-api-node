@@ -9,4 +9,8 @@ router.post('/createCase' , reportsController.createCases);
 
 router.post('/createUser', reportsController.createUser);
 
+router.get('/getUser/:uUID' , reportsController.getUser);
+
+router.get('/getCaseById/:caseId', reportsController.getCaseById);
+
 module.exports = router;
