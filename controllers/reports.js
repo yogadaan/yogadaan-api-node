@@ -48,3 +48,23 @@ exports.createCases = (req, res) => {
       }
     );
 };
+
+
+exports.createUser = (req, res) => {
+  const uUID = req.body.uUID;
+  const userName = req.body.userName;
+  const userPhone = req.body.userPhone;
+  const userEmail = req.body.userEmail;
+
+  database.query(
+    `INSERT INTO user(uUID, userName, userPhone, userEmail) VALUES('${uUID}', '${userName}', '${userPhone}', '${userEmail}')`, (err, result) => {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.send(result);
+      }
+    }
+  );
+
+};

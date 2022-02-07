@@ -7,4 +7,6 @@ router.get('/getCases', reportsController.getCases);
 
 router.post('/createCase' , reportsController.createCases);
 
+router.post('/createUser', reportsController.createUser);
+
 module.exports = router;
