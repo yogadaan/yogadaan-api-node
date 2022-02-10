@@ -22,6 +22,7 @@ CREATE TABLE user(
     uUID VARCHAR(255) DEFAULT NULL,
     userName VARCHAR(255) DEFAULT NULL,
     userEmail VARCHAR(255) DEFAULT NULL,
-    phoneNumber VARCHAR(255) DEFAULT NULL
+    phoneNumber VARCHAR(255) DEFAULT NULL,
+    ngo BOOLEAN false,
 );
 
