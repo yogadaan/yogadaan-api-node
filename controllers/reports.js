@@ -1,4 +1,5 @@
 // const Response = require('../utils/response');
+const { send } = require("express/lib/response");
 const database = require("../utils/database");
 
 // const HttpStatus = {
@@ -101,4 +102,29 @@ exports.getUser = (req, res) => {
       }
     }
   );
+};
+
+exports.createOrg = (req, res) => {
+  
+  const uUID = req.body.uUID;
+  const orgName = req.body.orgName;
+  const orgEmail = req.body.orgEmail;
+  const orgPhone = req.body.orgPhone;
+  const orgType = req.body.orgType;
+  const orgLocation = req.body.orgLocation;
+  // const totalCasesAccepted = req.body.totalCasesAccepted;
+
+  database.query(
+    `INSERT INTO org(uUID, orgName, orgEmail, orgPhone, orgType, orgLocation) VALUES(${uUID}, ${orgName}, ${orgEmail}. ${orgPhone}, ${orgType}, ${orgLocation})`, (err, result) => {
+      if(err) {
+        console.log(err);
+        res.send(err);
+      } else{
+        console.log(result);
+        res.send(result);
+      }
+    }
+  );
+
+
 };
