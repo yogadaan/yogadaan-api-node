@@ -54,10 +54,13 @@ exports.createCases = (req, res) => {
   const inform = req.body.inform;
   const caseId = req.body.caseId;
   const cImage = req.body.cImage;
+  const caseAccept = req.body.caseAccept;
+  const orgAssigned = req.body.orgAssigned;
+  const caseStatus = req.body.caseStatus;
 
   database
     .query(
-      `INSERT INTO reports(uUID, caseId, victimName, vTime, cType, cImage, severity, vLocation, inform) VALUES('${uUID}', '${caseId}' ,'${victimName}', '${vTime}', '${cType}', '${cImage}','${severity}', '${vLocation}','${inform}')`, (err,result) => {
+      `INSERT INTO reports(uUID, caseId, victimName, vTime, cType, caseAccepted, orgAssigned, caseStatus, cImage, severity, vLocation, inform) VALUES('${uUID}', '${caseId}' ,'${victimName}', '${vTime}', '${cType}', '${caseAccept}', '${orgAssigned}', '${caseStatus}','${cImage}','${severity}', '${vLocation}','${inform}')`, (err,result) => {
         if (err) {
           console.log(err);
         }
@@ -121,7 +124,7 @@ exports.createOrg = (req, res) => {
         res.send(err);
       } else{
         console.log(result);
-        res.send(result);
+        res.status(200).send(result);
       }
     }
   );

@@ -13,4 +13,6 @@ router.get('/getUser/:uUID' , reportsController.getUser);
 
 router.get('/getCaseById/:caseId', reportsController.getCaseById);
 
+router.post('/createOrg', reportsController.createOrg);
+
 module.exports = router;
