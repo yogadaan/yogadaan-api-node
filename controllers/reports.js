@@ -128,6 +128,21 @@ exports.createOrg = (req, res) => {
       }
     }
   );
+};
+
+exports.getOrg = (req, res) => {
+  const uUID = req.params.uUID;
+
+  database.query(
+    `SELECT * FROM org WHERE uUID = ${uUID}`, (err, result) => {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.send(result);
+      }
+    }
+  );
 
 
 };

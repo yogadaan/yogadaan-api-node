@@ -15,4 +15,6 @@ router.get('/getCaseById/:caseId', reportsController.getCaseById);
 
 router.post('/createOrg', reportsController.createOrg);
 
+router.get('/getOrg/:uUID', reportsController.getOrg);
+
 module.exports = router;
