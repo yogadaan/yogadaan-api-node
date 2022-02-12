@@ -144,12 +144,12 @@ exports.getOrg = (req, res) => {
   );
 };
 
-exoprts.acceptCase = (req, res) => {
+exports.acceptCase = (req, res) => {
   const caseId = req.body.caseId;
   const orgAssigned = req.body.orgAssigned;
 
   database.query(
-    `UPDATE reports SET caseAccepted = true WHERE caseID = ${caseId}` , (err, result) => {
+    `UPDATE reports SET caseAccepted = true, orgAssigned = ${orgAssigned} WHERE caseID = ${caseId}` , (err, result) => {
       if(err){
         console.log(err);
         res.send(err);
@@ -159,7 +159,4 @@ exoprts.acceptCase = (req, res) => {
       }
     }
   )
-
-
-
 };
