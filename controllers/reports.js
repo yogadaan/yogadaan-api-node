@@ -149,7 +149,7 @@ exoprts.acceptCase = (req, res) => {
   const orgAssigned = req.body.orgAssigned;
 
   database.query(
-    `UPDATE reports SET caseStatus`
+    `UPDATE reports SET caseAccepted = true WHERE caseID = ${caseId}`
   )
 
 
