@@ -43,7 +43,6 @@ exports.getCaseById = (req, res) => {
   
 };
 
-
 exports.createCases = (req, res) => {
   const uUID = req.body.uUID;
   const victimName = req.body.victimName;
@@ -143,6 +142,16 @@ exports.getOrg = (req, res) => {
       }
     }
   );
+};
+
+exoprts.acceptCase = (req, res) => {
+  const caseId = req.body.caseId;
+  const orgAssigned = req.body.orgAssigned;
+
+  database.query(
+    `UPDATE reports SET caseStatus`
+  )
+
 
 
 };
