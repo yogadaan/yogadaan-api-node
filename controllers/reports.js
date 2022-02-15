@@ -13,7 +13,6 @@ const database = require("../utils/database");
 // };
 
 
-
 exports.getCases = (req, res) => {
   database
     .query(`SELECT * FROM reports`, (err, result) => {
@@ -53,13 +52,13 @@ exports.createCases = (req, res) => {
   const inform = req.body.inform;
   const caseId = req.body.caseId;
   const cImage = req.body.cImage;
-  const caseAccept = req.body.caseAccept;
+  const caseAccepted = req.body.caseAccepted;
   const orgAssigned = req.body.orgAssigned;
   const caseStatus = req.body.caseStatus;
 
   database
     .query(
-      `INSERT INTO reports(uUID, caseId, victimName, vTime, cType, caseAccepted, orgAssigned, caseStatus, cImage, severity, vLocation, inform) VALUES('${uUID}', '${caseId}' ,'${victimName}', '${vTime}', '${cType}', '${caseAccept}', '${orgAssigned}', '${caseStatus}','${cImage}','${severity}', '${vLocation}','${inform}')`, (err,result) => {
+      `INSERT INTO reports(uUID, caseId, victimName, vTime, cType, caseAccepted, orgAssigned, caseStatus, cImage, severity, vLocation, inform) VALUES('${uUID}', '${caseId}' ,'${victimName}', '${vTime}', '${cType}', '${caseAccepted}', '${orgAssigned}', '${caseStatus}','${cImage}','${severity}', '${vLocation}','${inform}')`, (err,result) => {
         if (err) {
           console.log(err);
         }
@@ -71,7 +70,6 @@ exports.createCases = (req, res) => {
       }
     );
 };
-
 
 exports.createUser = (req, res) => {
   const uUID = req.body.uUID;
