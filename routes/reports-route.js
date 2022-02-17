@@ -19,4 +19,10 @@ router.get('/getOrg/:uUID', reportsController.getOrg);
 
 router.post('/acceptCase', reportsController.acceptCase);
 
+router.get('/getServicesNearYou', reportsController.getServicesNearYou);
+
+router.get('/getMyCases/:uUID', reportsController.getMyCases);
+
+router.post('/deleteCaseById/:caseId', reportsController.deleteCaseById);
+
 module.exports = router;

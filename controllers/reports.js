@@ -105,7 +105,7 @@ exports.getUser = (req, res) => {
 };
 
 exports.createOrg = (req, res) => {
-  
+
   const uUID = req.body.uUID;
   const orgName = req.body.orgName;
   const orgEmail = req.body.orgEmail;
@@ -115,7 +115,7 @@ exports.createOrg = (req, res) => {
   // const totalCasesAccepted = req.body.totalCasesAccepted;
 
   database.query(
-    `INSERT INTO org(uUID, orgName, orgEmail, orgPhone, orgType, orgLocation) VALUES(${uUID}, ${orgName}, ${orgEmail}. ${orgPhone}, ${orgType}, ${orgLocation})`, (err, result) => {
+    `INSERT INTO org(uUID, orgName, orgEmail, orgPhone, orgType, orgLocation) VALUES('${uUID}', '${orgName}', '${orgEmail}', '${orgPhone}', '${orgType}', '${orgLocation}')`, (err, result) => {
       if(err) {
         console.log(err);
         res.send(err);
@@ -126,6 +126,7 @@ exports.createOrg = (req, res) => {
     }
   );
 };
+
 
 exports.getOrg = (req, res) => {
   const uUID = req.params.uUID;
@@ -158,3 +159,50 @@ exports.acceptCase = (req, res) => {
     }
   )
 };
+
+exports.getServicesNearYou = (req, res) => {
+
+  database.query(
+    `SELECT * FROM org`, (err, result) => {
+      if(err){
+        console.log(err);
+        res.send(err);
+      } else{
+        console.log(result);
+        res.status(200).send(result);
+      }
+    }
+  )
+};
+
+exports.getMyCases = (req,res) => {
+  const uUID = req.params.uUID;
+
+  database.query(
+    `SELECT * FROM reports WHERE uUID = ${uUID}`, (err, result) => {
+      if(err){
+        console.log(err);
+        res.send(err);
+      }else{
+        console.log(result);
+        res.status(200).send(result);
+      }
+    }
+  )
+};
+
+exports.deleteCaseById = (req, res) => {
+  const caseId  = req.bo.caseId;
+
+  database.query(
+    `DELETE FROM reports WHERE caseId = ${caseId}`, (err, result) => {
+      if(err){
+        console.log(err);
+        res.send(err);
+      } else {
+        console.log(result);
+        res.status(200).send(result);
+      }
+    }
+  )
+}
