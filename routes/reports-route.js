@@ -27,4 +27,6 @@ router.post('/deleteCaseById', reportsController.deleteCaseById);
 
 router.post('/editProfile', reportsController.editProfile);
 
+router.post('/welcomeMail', reportsController.welcomeMail);
+
 module.exports = router;

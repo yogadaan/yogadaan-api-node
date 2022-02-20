@@ -1,6 +1,14 @@
 // const Response = require('../utils/response');
 const { send } = require("express/lib/response");
 const database = require("../utils/database");
+const nodemailer = require("nodemailer");
+const sendgridTransport = require("nodemailer-sendgrid-transport");
+
+const transporter = nodemailer.createTransport(sendgridTransport({
+  auth : {
+    api_key: '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' 
+  }
+}));
 
 // const HttpStatus = {
 //     OK: {code : 200, status: 'OK'},
@@ -225,4 +233,27 @@ exports.editProfile = (req,res) => {
       }
     }
   )
+};
+
+exports.welcomeMail = (req, res) => {
+
+  const userEmail = req.body.userEmail;
+
+  var mailOptions = {
+    from: 'info@yogdaan.tech',
+    to: userEmail,
+    subject: 'Signed Up Successfully!',
+    text: 'That was easy!'
+  };
+  
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+      res.send(info);
+    } else {
+      console.log('Email sent: ' + userEmail);
+      res.send(info);
+    }
+  });
+  
 };
