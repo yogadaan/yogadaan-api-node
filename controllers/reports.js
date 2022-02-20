@@ -192,7 +192,7 @@ exports.getMyCases = (req,res) => {
 };
 
 exports.deleteCaseById = (req, res) => {
-  const caseId  = req.bo.caseId;
+  const caseId  = req.body.caseId;
 
   database.query(
     `DELETE FROM reports WHERE caseId = ${caseId}`, (err, result) => {
@@ -205,4 +205,24 @@ exports.deleteCaseById = (req, res) => {
       }
     }
   )
-}
+};
+
+exports.editProfile = (req,res) => {
+  const uUID = req.body.uUID;
+  const userName = req.body.userName;
+  const phoneNumber = req.body.phoneNumber;
+  const userEmail = req.body.userEmail;
+
+
+  database.query(
+    `UPDATE user SET userName = '${userName}', phoneNumber = ${phoneNumber}, userEmail = '${userEmail}' WHERE uUID = ${uUID}`, (err, result) => {
+      if(err){
+        console.log(err);
+        res.send(err);
+      }else{
+        console.log(result);
+        res.send(result);
+      }
+    }
+  )
+};

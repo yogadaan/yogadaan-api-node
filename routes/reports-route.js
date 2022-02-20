@@ -23,6 +23,8 @@ router.get('/getServicesNearYou', reportsController.getServicesNearYou);
 
 router.get('/getMyCases/:uUID', reportsController.getMyCases);
 
-router.post('/deleteCaseById/:caseId', reportsController.deleteCaseById);
+router.post('/deleteCaseById', reportsController.deleteCaseById);
+
+router.post('/editProfile', reportsController.editProfile);
 
 module.exports = router;
