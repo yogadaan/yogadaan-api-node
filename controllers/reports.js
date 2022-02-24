@@ -258,3 +258,5 @@ exports.welcomeMail = (req, res) => {
   });
   
 };
+
+
