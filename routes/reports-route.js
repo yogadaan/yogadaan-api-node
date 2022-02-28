@@ -29,4 +29,6 @@ router.post('/editProfile', reportsController.editProfile);
 
 router.post('/welcomeMail', reportsController.welcomeMail);
 
+router.get('/getRecentCase/:uUID', reportsController.getRecentCase);
+
 module.exports = router;

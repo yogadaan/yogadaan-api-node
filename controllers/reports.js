@@ -152,22 +152,6 @@ exports.getOrg = (req, res) => {
   );
 };
 
-exports.acceptCase = (req, res) => {
-  const caseId = req.body.caseId;
-  const orgAssigned = req.body.orgAssigned;
-
-  database.query(
-    `UPDATE reports SET caseAccepted = true, orgAssigned = ${orgAssigned} WHERE caseID = ${caseId}` , (err, result) => {
-      if(err){
-        console.log(err);
-        res.send(err);
-      } else{
-        console.log(result);
-        res.status(200).send(result);
-      }
-    }
-  )
-};
 
 exports.getServicesNearYou = (req, res) => {
 
@@ -260,3 +244,34 @@ exports.welcomeMail = (req, res) => {
 };
 
 
+exports.acceptCase = (req, res) => {
+  const caseId = req.body.caseId;
+  const orgAssigned = req.body.orgAssigned;
+
+  database.query(
+    `UPDATE reports SET caseAccepted = true, orgAssigned = ${orgAssigned} WHERE caseID = ${caseId}` , (err, result) => {
+      if(err){
+        console.log(err);
+        res.send(err);
+      } else{
+        console.log(result);
+        res.status(200).send(result);
+      }
+    }
+  )
+};
+
+exports.getRecentCase = (req, res) => {
+  const uUID = req.params.uUID;
+  database.query(
+    `SELECT * FROM reports WHERE uUID = "${uUID}" ORDER BY createdAt ASC LIMIT 1;`, (err, result) => {
+      if(err){
+        console.log(err);
+        res.send(err);
+      }else{
+        console.log(result);
+        res.send(result);
+      }
+    }
+  )
+}
