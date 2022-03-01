@@ -247,9 +247,10 @@ exports.welcomeMail = (req, res) => {
 exports.acceptCase = (req, res) => {
   const caseId = req.body.caseId;
   const orgAssigned = req.body.orgAssigned;
+  const orgUID = req.body.orgUID;
 
   database.query(
-    `UPDATE reports SET caseAccepted = true, orgAssigned = ${orgAssigned} WHERE caseID = ${caseId}` , (err, result) => {
+    `UPDATE reports SET caseAccepted = true, orgAssigned = "${orgAssigned}", orgUID = "${orgUID}" WHERE caseID = ${caseId}` , (err, result) => {
       if(err){
         console.log(err);
         res.send(err);
@@ -267,7 +268,7 @@ exports.getRecentCase = (req, res) => {
     `SELECT * FROM reports WHERE uUID = "${uUID}" ORDER BY createdAt ASC LIMIT 1;`, (err, result) => {
       if(err){
         console.log(err);
-        res.send(err);
+        res.send(err);p
       }else{
         console.log(result);
         res.send(result);
@@ -275,3 +276,6 @@ exports.getRecentCase = (req, res) => {
     }
   )
 }
+
+
+// org Side APIS start
